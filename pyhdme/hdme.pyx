@@ -55,6 +55,7 @@ def rescale(c, I, weights):
     return vector([c**i * j for i, j in zip(weights, I)])
 
 def canonicalize_rational_invariants(I, weights):
+    assert weights == [1,2,3,5] # FIXME
     assert len(I) == len(weights)
     I = [QQ(elt) for elt in I]
     weights = [ZZ(w) for w in weights] # for the divisions below
