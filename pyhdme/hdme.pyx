@@ -51,34 +51,6 @@ cdef print_vector(fmpz* elt, n):
             printf(", ");
     printf(")\n")
 
-def rescale(c, I, weights):
-    return vector([c**i * j for i, j in zip(weights, I)])
-
-def canonicalize_rational_invariants(I, weights):
-    assert weights == [1,2,3,5] # FIXME
-    assert len(I) == len(weights)
-    I = [QQ(elt) for elt in I]
-    weights = [ZZ(w) for w in weights] # for the divisions below
-    # make it integral
-    for i, w in enumerate(weights):
-        if I[i] == 0:
-            continue
-        b, p = I[i].denominator().perfect_power()
-        I = rescale(b**ceil(p/w), I, weights)
-    assert all(elt.denominator() == 1 for elt in I)
-    I = [ZZ(elt) for elt in I]
-    d = gcd( j**(30/w) for w, j in zip(weights, I))
-    c = prod( p**(-(e//30)) for p, e in d.factor())
-    I = rescale(c, I, weights)
-    oddw = [i for i, w in enumerate(weights) if w % 2 == 1]
-    if len(oddw) > 0 and I[oddw[0]] < 0:
-        I = rescale(-1, I, weights)
-    return tuple(I)
-
-def canonicalize_igusa_clebsch_invariants(I):
-    return canonicalize_rational_invariants(I, [1,2,3,5])
-
-
 def igusa_clebsch_from_modular_igusa(M):
 #    M4, M6, M10, M12 = M
 #    I4 = M4*4
@@ -87,7 +59,6 @@ def igusa_clebsch_from_modular_igusa(M):
 #    I2 = I12/I10
 #    I6prime = M6*4 # = (I2*I4-3*I6)/2
 #    I6 = (I2*I4 - I6prime*2)/3
-#    return canonicalize_igusa_clebsch_invariants((I2, I4, I6, I10))
     cdef fmpz *cM
     cM = _fmpz_vec_init(4)
     for i in range(4):
