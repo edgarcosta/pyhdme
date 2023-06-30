@@ -1,4 +1,4 @@
-# pycontrolledreduction
+# pyhdme
 
 
 This package is a simple wrapper for a subset of the [hdme](https://github.com/j-kieffer/hdme) library code into SageMath.
