@@ -1,8 +1,16 @@
 # pycontrolledreduction
 
 
-This package is a simple wrapper to integrate most of [hdme](https://github.com/j-kieffer/hdme) library code into SageMath.
+This package is a simple wrapper for a subset of the [hdme](https://github.com/j-kieffer/hdme) library code into SageMath.
+In particular:
+From `modular.h`:
+- `int siegel_direct_isog_Q(slong* nb, fmpz* all_I, fmpz* I, slong ell)` as `siegel_modeq_isog_invariants_Q_wrapper`
+- `int siegel_2step_direct_isog_Q(slong* nb, fmpz* all_I, fmpz* I, slong ell)` as `siegel_modeq_2step_isog_invariants_Q_wrapper`
 
+From `igusa.h`:
+- `void igusa_IC_fmpz(fmpz* IC, fmpz* I)` as `igusa_clebsch_from_modular_igusa`
+- `void igusa_from_IC_fmpz(fmpz* I, fmpz* IC)` as `modular_igusa_from_igusa_clebsch`
+ 
 
 ## Install
 
