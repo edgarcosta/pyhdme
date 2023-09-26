@@ -2,7 +2,6 @@
 ## -*- encoding: utf-8 -*-
 
 import os
-import re
 import sys
 from setuptools import setup
 from codecs import open  # To open the README file with proper encoding
@@ -29,21 +28,20 @@ cythonize_dir = "build"
 
 path = os.path.dirname(os.path.abspath(__file__))
 lib_path = os.path.join(path, "pyhdme/lib")
-data_path = os.path.join(lib_path, "hdme_data")
 allfiles_in_lib = [
     os.path.relpath(os.path.join(dp, f), path)
-    for dp, dn, fn in os.walk(os.path.expanduser(lib_path))
+    for dp, _, fn in os.walk(os.path.expanduser(lib_path))
     for f in fn
 ]
 
 hdme_sources = [
     elt
     for elt in allfiles_in_lib
-    if elt.endswith(".c") and
-    "test/" not in elt and
-    "time/" not in elt and
-    "examples/" not in elt and
-    "programs/" not in elt
+    if elt.endswith(".c")
+    and "test/" not in elt
+    and "time/" not in elt
+    and "examples/" not in elt
+    and "programs/" not in elt
 ]
 
 if sys.platform == "darwin":
@@ -52,11 +50,6 @@ if sys.platform == "darwin":
 else:
     libopenmp = []
     openmpflags = ["-fopenmp"]
-
-
-
-
-
 
 
 pyhdme = Extension(
@@ -75,7 +68,7 @@ pyhdme = Extension(
 setup(
     name="pyhdme",
     author="Edgar Costa",
-    author_email="edgarcosta@math.dartmouth.edu",
+    author_email="edgarc@mit.edu",
     url="https://github.com/edgarcosta/pyhdme",
     license="GNU General Public License, version 3",
     description="Wrapper for C library for evaluating higher-dimensional modular equations",
@@ -105,4 +98,3 @@ setup(
     # ext_modules = extensions,
     # cmdclass = {'test': SageTest, 'build_ext': Cython.Build.build_ext} # adding a special setup command for tests and build_ext
 )
-
