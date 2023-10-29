@@ -1,4 +1,5 @@
 # distutils: language=c
+# cython: language_level=3
 # clang c
 # Copyright 2022 Edgar Costa
 # See LICENSE file for license details.

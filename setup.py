@@ -73,7 +73,7 @@ setup(
     license="GNU General Public License, version 3",
     description="Wrapper for C library for evaluating higher-dimensional modular equations",
     long_description=readfile("README.md"),  # get the long description from the README
-    version=readfile("VERSION"),  # the VERSION file is shared with the documentation
+    version=readfile("VERSION").strip(),  # the VERSION file is shared with the documentation
     classifiers=[
         # How mature is this project? Common values are
         #   3 - Alpha

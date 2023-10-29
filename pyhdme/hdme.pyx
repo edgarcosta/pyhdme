@@ -1,4 +1,5 @@
 # distutils: language=c
+# cython: language_level=3
 # clang c
 # Copyright 2022 Edgar Costa
 # See LICENSE file for license details.
@@ -12,14 +13,7 @@ from sage.libs.flint.types cimport fmpz, slong
 from sage.libs.gmp.mpz cimport mpz_get_si, mpz_set_si
 from sage.rings.integer cimport Integer
 from sage.rings.rational cimport Rational
-from sage.all import (
-    ZZ,
-    QQ,
-    ceil,
-    gcd,
-    vector,
-    prod,
-)
+from sage.rings.integer_ring import Z as ZZ
 
 
 """
